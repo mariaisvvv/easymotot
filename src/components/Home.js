@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 
-function InitialPage() {
+function Home() {
   return (
     <div>
         <Navbar bg="dark" variant="dark">
@@ -20,4 +20,4 @@ function InitialPage() {
   )
 }
 
-export default InitialPage
+export default Home
