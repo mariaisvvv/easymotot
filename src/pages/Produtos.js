@@ -1,7 +1,11 @@
 import Table from 'react-bootstrap/Table';
+import Layout from '../components/Layout';
 
 function Produtos() {
   return (
+    <div>
+      <Layout />
+      <h1>Produtos</h1>
     <div>
       <Table responsive>
       <thead>
@@ -33,6 +37,7 @@ function Produtos() {
         </tr>
       </tbody>
     </Table>
+    </div>
     </div>
   )
 }
