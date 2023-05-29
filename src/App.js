@@ -1,10 +1,10 @@
-import InitialPage from './components/InitialPage'
+import Home from './pages/Home'
 
 
 function App() {
   
   return (
-    <InitialPage />
+    <Home />
   );
 }
 
