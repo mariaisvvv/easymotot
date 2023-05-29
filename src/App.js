@@ -1,6 +1,10 @@
+import InitialPage from './components/InitialPage'
+
+
 function App() {
+  
   return (
-    <h1>Easy Moto</h1>
+    <InitialPage />
   );
 }
 
