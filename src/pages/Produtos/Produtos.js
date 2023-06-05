@@ -48,7 +48,7 @@ const produtosList = [
   },
 ]
 
-function Produtos() {
+const Produtos = () => {
   const navigate = useNavigate();
   const [produtos, setProdutos] = useState(produtosList);
 

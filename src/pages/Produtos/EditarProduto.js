@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 
-function EditarProduto() {
+const EditarProduto = () => {
     const location = useLocation();
     const produto = location.state?.produto || {};
 

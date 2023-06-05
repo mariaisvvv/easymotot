@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
-function CriarProduto(handleCriarProduto) {
+const CriarProduto = (handleCriarProduto) => {
     const navigate = useNavigate();
     
     const handleSubmit = (event) => {
