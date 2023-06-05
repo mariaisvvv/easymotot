@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import Table from 'react-bootstrap/Table';
-import { Link } from 'react-router-dom';
-import Layout from '../../components/Layout';
-import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
+import Layout from '../../components/Layout';
+import Header from '../../components/Header';
+import TableList from '../../components/TableList';
 
 const labels = ['Nome', 'Preço', 'Descrição', 'Tamanho', 'Género', 'Cor', 'Coleção', 'Categoria', 'Marca', 'Utilizador']
 const produtosList = [
@@ -70,38 +69,14 @@ const Produtos = () => {
     <div>
       <Layout />
       <div className="container">
-        <h1>Lista de Produtos</h1>
-        <Link to="/criar-produto">
-          <Button variant="primary" onClick={()=> handleCriarProduto({})}>Criar novo Produto</Button>
-        </Link>
-        <Table responsive>
-          <thead className="thead-dark">
-          <tr>
-              {labels.map((label) => (
-                <th key={label}>{label}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {produtos.map((produto) => (
-              <tr key={produto.id}>
-                <td>{produto.nome}</td>
-                <td>{produto.preco}</td>
-                <td>{produto.descricao}</td>
-                <td>{produto.tamanho}</td>
-                <td>{produto.genero}</td>
-                <td>{produto.cor}</td>
-                <td>{produto.colecao}</td>
-                <td>{produto.categoria}</td>
-                <td>{produto.marca}</td>
-                <td>{produto.utilizador}</td>
-                <td>
-                <a href='#' onClick={() => handleNavigateEditarProduto(produto)}> Editar </a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </Table>
+        <Header 
+          handleCriarProduto={handleCriarProduto}
+          textTitle='Lista de Produtos'
+          textBtn='Criar novo Produto'/>
+        <TableList 
+          labels={labels} 
+          produtos={produtosList} 
+          editProduto={handleNavigateEditarProduto} />
       </div>
     </div>
   );

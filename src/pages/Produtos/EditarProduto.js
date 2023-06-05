@@ -9,7 +9,7 @@ const EditarProduto = () => {
 
   return (
     <div className="container">
-        <h1>Editar Produto {produto.id}</h1>
+        <h1>Editar Produto</h1>
             <Form>
                 <Form.Group>
                     <Form.Label>Nome</Form.Label>
