@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Header from '../../components/Header';
 import TableList from '../../components/TableList';
@@ -48,8 +47,8 @@ const produtosList = [
 ]
 
 const Produtos = () => {
-  const navigate = useNavigate();
   const [produtos, setProdutos] = useState(produtosList);
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const handleCriarProduto = (produto) => {
     const novoProduto = {
@@ -59,10 +58,16 @@ const Produtos = () => {
     setProdutos([...produtos, novoProduto]);
   };
 
-  const handleNavigateEditarProduto = (produto) => {
-    if (produto.id !== 0) {
-      navigate(`/editar-produto/${produto.id}`, { state: { produto } });
-    }
+  const handleEditarProduto = (editedProduct) => {
+    setProdutos((prevProdutos) => {
+      const updatedProdutos = prevProdutos.map((produto) => {
+        if (produto.id === editedProduct.id) {
+          return { ...editedProduct };
+        }
+        return produto;
+      });
+      return updatedProdutos;
+    });
   };
 
   return (
@@ -76,7 +81,8 @@ const Produtos = () => {
         <TableList 
           labels={labels} 
           produtos={produtosList} 
-          editProduto={handleNavigateEditarProduto} />
+          handleEditarProduto={handleEditarProduto}
+          key={refreshKey} />
       </div>
     </div>
   );

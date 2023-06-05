@@ -4,17 +4,17 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 const CriarProduto = (handleCriarProduto) => {
-    const navigate = useNavigate();
     
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(event.target[0].value)
+        //...
+        // setContactInfo({ name: "", email: "", phonenumber: "" });
       };
 
   return (
     <div className="container">
         <h1>Criar Produto</h1>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group>
                     <Form.Label>Nome</Form.Label>
                     <Form.Control placeholder="Nome do produto" />

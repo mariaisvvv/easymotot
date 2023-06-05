@@ -1,7 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Table from 'react-bootstrap/Table';
+import EditarProduto from './EditarProduto';
 
-const TableList = ({labels, produtos, editProduto}) => {
+const TableList = ({labels, produtos, handleEditarProduto}) => {
+const [visibleEdit, setVisibleEdit] = useState(false);
+const [editableProduct, setEditableProduct] = useState();
+
+const toggleVisibilityEdit  = (product) => {
+  setVisibleEdit(prevState => !prevState);
+  setEditableProduct(product);
+}
+
   return (
     <div>
         <Table responsive>
@@ -26,12 +35,15 @@ const TableList = ({labels, produtos, editProduto}) => {
                 <td>{produto.marca}</td>
                 <td>{produto.utilizador}</td>
                 <td>
-                    <a href='#' onClick={() => editProduto(produto)}> Editar </a>
+                    <a href='#' onClick={() => toggleVisibilityEdit(produto)}> Editar </a>
                 </td>
               </tr>
             ))}
           </tbody>
         </Table>
+        {visibleEdit && <EditarProduto 
+          produto={editableProduct} 
+          handleEditarProduto={handleEditarProduto}/>}
     </div>
   )
 }
