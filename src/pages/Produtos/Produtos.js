@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Table from 'react-bootstrap/Table';
 import { Link } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Button from 'react-bootstrap/Button';
-import EditarProduto from './EditarProduto';
+import { useNavigate } from 'react-router-dom';
 
 const labels = ['Nome', 'Preço', 'Descrição', 'Tamanho', 'Género', 'Cor', 'Coleção', 'Categoria', 'Marca', 'Utilizador']
-const produtos = [
+const produtosList = [
   {
     id: 1,
     nome: 'Produto 1',
@@ -49,9 +49,21 @@ const produtos = [
 ]
 
 function Produtos() {
+  const navigate = useNavigate();
+  const [produtos, setProdutos] = useState(produtosList);
 
-  const handleEditarProduto = (produto) => {
-    <EditarProduto product={produto.id} />
+  const handleCriarProduto = (produto) => {
+    const novoProduto = {
+      id: produtos.length + 1,
+      ...produto,
+    };
+    setProdutos([...produtos, novoProduto]);
+  };
+
+  const handleNavigateEditarProduto = (produto) => {
+    if (produto.id !== 0) {
+      navigate(`/editar-produto/${produto.id}`, { state: { produto } });
+    }
   };
 
   return (
@@ -60,7 +72,7 @@ function Produtos() {
       <div className="container">
         <h1>Lista de Produtos</h1>
         <Link to="/criar-produto">
-          <Button variant="primary">Criar novo Produto</Button>
+          <Button variant="primary" onClick={()=> handleCriarProduto({})}>Criar novo Produto</Button>
         </Link>
         <Table responsive>
           <thead className="thead-dark">
@@ -84,7 +96,7 @@ function Produtos() {
                 <td>{produto.marca}</td>
                 <td>{produto.utilizador}</td>
                 <td>
-                <a href='#' onClick={() => handleEditarProduto(produto)}> Editar </a>
+                <a href='#' onClick={() => handleNavigateEditarProduto(produto)}> Editar </a>
                 </td>
               </tr>
             ))}

@@ -19,7 +19,8 @@ root.render(
           <Route path="/home" element={<Home />} />
           <Route path="/produtos" element={<Produtos />} />
           <Route path="/criar-produto" element={<CriarProduto />} />
-          <Route path="/edtar-produto" element={<EditarProduto />} />
+          <Route exact path="/editar-produto/:id" Component={EditarProduto} />
+            
           {/* <Route path="utilizadores" element={<Utilizadores />} />
           <Route path="*" element={<NoPage />} /> */}
       </Routes>

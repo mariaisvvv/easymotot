@@ -1,8 +1,16 @@
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
-function CriarProduto() {
+function CriarProduto(handleCriarProduto) {
+    const navigate = useNavigate();
+    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(event.target[0].value)
+      };
+
   return (
     <div className="container">
         <h1>Criar Produto</h1>
@@ -49,9 +57,10 @@ function CriarProduto() {
                 </Form.Group>
 
                 <Button variant="primary" type="submit">Criar</Button>
+
                 <div>
                     <Link to="/produtos">
-                        <a> Voltar à Lista</a>
+                        Voltar à Lista
                     </Link>
                 </div>
             </Form>
