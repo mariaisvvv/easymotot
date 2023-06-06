@@ -5,7 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home';
-import Produtos from './pages/Produtos/Produtos';
+import Produtos from './pages/Produtos';
 import CriarProduto from './pages/Produtos/CriarProduto';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

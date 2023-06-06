@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Table from 'react-bootstrap/Table';
 
 
 const TableList = ({labels, produtos, toggleVisibilityEdit, toggleVisibilityDelete}) => {
-
 
   return (
     <div>

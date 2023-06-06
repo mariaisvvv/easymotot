@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import Layout from '../../components/Layout';
-import Header from '../../components/Header';
-import TableList from '../../components/TableList';
-import EditarProduto from '../../components/EditarProduto';
-import ApagarProduto from '../../components/ApagarProduto';
+import Layout from '../components/Layout';
+import Header from '../components/Header';
+import TableList from '../components/TableList';
+import EditarProduto from '../components/EditarProduto';
+import ApagarProduto from '../components/ApagarProduto';
 
-const labels = ['Nome', 'Preço', 'Descrição', 'Tamanho', 'Género', 'Cor', 'Coleção', 'Categoria', 'Marca', 'Utilizador']
+const labels = ['Nome', 'Preco', 'Descricao', 'Tamanho', 'Genero', 'Cor', 'Colecao', 'Categoria', 'Marca', 'Utilizador']
 const produtosList = [
   {
     id: 1,
@@ -97,6 +97,13 @@ const Produtos = () => {
     setVisibleEdit(prevState => !prevState);
   };
 
+  const handleApagarProduto = (produto) => {
+    setProdutos((prevProdutos) => {
+      return prevProdutos.filter((p) => p.id !== produto.id)
+    });
+    setVisibleDelete(prevState => !prevState);
+  }
+
   return (
     <div>
       <Layout />
@@ -115,7 +122,10 @@ const Produtos = () => {
         {visibleEdit && <EditarProduto 
           produto={editableProduct} 
           handleEditarProduto={handleEditarProduto}/>}
-        {visibleDelete && <ApagarProduto />}
+        {visibleDelete && <ApagarProduto 
+          produto={editableProduct}
+          labels={labels}
+          handleApagarProduto={handleApagarProduto}/>}
       </div>
     </div>
   );
