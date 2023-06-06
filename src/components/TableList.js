@@ -2,7 +2,7 @@ import React from 'react'
 import Table from 'react-bootstrap/Table';
 
 
-const TableList = ({labels, produtos, toggleVisibilityEdit, toggleVisibilityDelete}) => {
+const TableList = ({labels, produtos, toggleVisibilityEdit, toggleVisibilityDelete, toggleVisibilityDetails}) => {
 
   return (
     <div>
@@ -30,6 +30,7 @@ const TableList = ({labels, produtos, toggleVisibilityEdit, toggleVisibilityDele
                 <td>
                   <div className='reference-links'>
                     <a href='#' onClick={() => toggleVisibilityEdit(produto)}> Editar </a>
+                    <a href='#' onClick={() => toggleVisibilityDetails(produto)}> Detalhes </a>
                     <a href='#' onClick={() => toggleVisibilityDelete(produto)}> Apagar </a>
                   </div>
                 </td>

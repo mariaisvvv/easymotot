@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import TableList from '../components/TableList';
 import EditarProduto from '../components/EditarProduto';
 import ApagarProduto from '../components/ApagarProduto';
+import DetalhesProduto from '../components/DetalhesProduto';
 
 const labels = ['Nome', 'Preco', 'Descricao', 'Tamanho', 'Genero', 'Cor', 'Colecao', 'Categoria', 'Marca', 'Utilizador']
 const produtosList = [
@@ -17,7 +18,7 @@ const produtosList = [
     cor: 'Cizento',
     colecao: 'Anual',
     categoria: 'capacetes',
-    marca: 'Marca Nexx',
+    marca: 'Nexx',
     utilizador: 'Ana',
   },
   {
@@ -52,6 +53,7 @@ const Produtos = () => {
   const [produtos, setProdutos] = useState(produtosList);
   const [visibleEdit, setVisibleEdit] = useState(false);
   const [visibleDelete, setVisibleDelete] = useState(false);
+  const [visibleDetails, setVisibleDetails] = useState(false);
   const [editableProduct, setEditedProduto] = useState({
     id: 0,
     nome: '',
@@ -74,6 +76,11 @@ const Produtos = () => {
   const toggleVisibilityEdit  = (product) => {
     setEditedProduto(product);
     setVisibleEdit(prevState => !prevState);
+  }
+
+  const toggleVisibilityDetails  = (product) => {
+    setEditedProduto(product);
+    setVisibleDetails(prevState => !prevState);
   }
 
   const handleCriarProduto = (produto) => {
@@ -120,6 +127,7 @@ const Produtos = () => {
               produtos={produtos} 
               toggleVisibilityEdit={toggleVisibilityEdit}
               toggleVisibilityDelete={toggleVisibilityDelete}
+              toggleVisibilityDetails={toggleVisibilityDetails}
             />
           </>
         )}
@@ -132,6 +140,10 @@ const Produtos = () => {
           labels={labels}
           handleApagarProduto={handleApagarProduto}
           toggleVisibilityDelete={toggleVisibilityDelete}/>}
+        {visibleDetails && <DetalhesProduto 
+          produto={editableProduct}
+          labels={labels}
+          toggleVisibilityDetails={toggleVisibilityDetails}/>}
       </div>
     </div>
   );
