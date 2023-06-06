@@ -20,6 +20,7 @@ const EditarProduto = ({produto, handleEditarProduto}) => {
   return (
     <div className="container">
         <h1>Editar Produto</h1>
+        <h3>{editedProduto.nome}</h3>
             <Form onSubmit={handleFormSubmit}>
             <InputProdutos 
                     label='Nome'
@@ -94,9 +95,6 @@ const EditarProduto = ({produto, handleEditarProduto}) => {
                 />
 
                 <Button variant="primary" type="submit">Guardar</Button>
-                <div>
-                    <Link to="/produtos">Voltar à Lista</Link>
-                </div>
             </Form>
     </div>
   )

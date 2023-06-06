@@ -1,15 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
-import EditarProduto from './EditarProduto';
 
-const TableList = ({labels, produtos, handleEditarProduto}) => {
-const [visibleEdit, setVisibleEdit] = useState(false);
-const [editableProduct, setEditableProduct] = useState();
 
-const toggleVisibilityEdit  = (product) => {
-  setVisibleEdit(prevState => !prevState);
-  setEditableProduct(product);
-}
+const TableList = ({labels, produtos, toggleVisibilityEdit}) => {
+
 
   return (
     <div>
@@ -35,15 +29,15 @@ const toggleVisibilityEdit  = (product) => {
                 <td>{produto.marca}</td>
                 <td>{produto.utilizador}</td>
                 <td>
+                  <div className='reference-links'>
                     <a href='#' onClick={() => toggleVisibilityEdit(produto)}> Editar </a>
+                    <a href='#' onClick={() => toggleVisibilityEdit(produto)}> Apagar </a>
+                  </div>
                 </td>
               </tr>
             ))}
           </tbody>
         </Table>
-        {visibleEdit && <EditarProduto 
-          produto={editableProduct} 
-          handleEditarProduto={handleEditarProduto}/>}
     </div>
   )
 }

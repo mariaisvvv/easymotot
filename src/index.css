@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.reference-links {
+  display: flex;
+  gap: 5px; /* Adjust the gap between the links */
+}

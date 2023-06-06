@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Layout from '../../components/Layout';
 import Header from '../../components/Header';
 import TableList from '../../components/TableList';
+import EditarProduto from '../../components/EditarProduto';
 
 const labels = ['Nome', 'Preço', 'Descrição', 'Tamanho', 'Género', 'Cor', 'Coleção', 'Categoria', 'Marca', 'Utilizador']
 const produtosList = [
@@ -48,7 +49,25 @@ const produtosList = [
 
 const Produtos = () => {
   const [produtos, setProdutos] = useState(produtosList);
-  const [refreshKey, setRefreshKey] = useState(0);
+  const [visibleEdit, setVisibleEdit] = useState(false);
+  const [editableProduct, setEditedProduto] = useState({
+    id: 0,
+    nome: '',
+    preco: '',
+    descricao: '',
+    tamanho: '',
+    genero: '',
+    cor: '',
+    colecao: '',
+    categoria: '',
+    marca: '',
+    utilizador: '',
+  });
+
+  const toggleVisibilityEdit  = (product) => {
+    setEditedProduto(product);
+    setVisibleEdit(prevState => !prevState);
+  }
 
   const handleCriarProduto = (produto) => {
     const novoProduto = {
@@ -62,12 +81,13 @@ const Produtos = () => {
     setProdutos((prevProdutos) => {
       const updatedProdutos = prevProdutos.map((produto) => {
         if (produto.id === editedProduct.id) {
-          return { ...editedProduct };
+          return editedProduct;
         }
         return produto;
       });
       return updatedProdutos;
     });
+    setVisibleEdit(prevState => !prevState);
   };
 
   return (
@@ -80,9 +100,11 @@ const Produtos = () => {
           textBtn='Criar novo Produto'/>
         <TableList 
           labels={labels} 
-          produtos={produtosList} 
-          handleEditarProduto={handleEditarProduto}
-          key={refreshKey} />
+          produtos={produtos} 
+          toggleVisibilityEdit ={toggleVisibilityEdit}/>
+        {visibleEdit && <EditarProduto 
+          produto={editableProduct} 
+          handleEditarProduto={handleEditarProduto}/>}
       </div>
     </div>
   );
