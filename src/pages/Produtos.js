@@ -9,16 +9,16 @@ const labels = ['Nome', 'Preco', 'Descricao', 'Tamanho', 'Genero', 'Cor', 'Colec
 const produtosList = [
   {
     id: 1,
-    nome: 'Produto 1',
-    preco: '10,99 €',
-    descricao: 'Descrição 1',
-    tamanho: 'XL',
-    genero: 'Masculino',
-    cor: 'Vermelho',
-    colecao: 'Coleção 1',
-    categoria: 'Category 1',
-    marca: 'Marca 1',
-    utilizador: 'Utilizador 1',
+    nome: 'CAPACETE NEXX SX100R ABISAL BLACK RED MATT',
+    preco: '186,30 €',
+    descricao: 'Capacete Nexx SX.100R Abisal Preto / Vermelho Mate. Capacete integral em material termoplástico muito leve. Destaca-se por oferecer um design aerodinâmico, moderno e esportivo ideal para o uso diário. Tem uma pala de sol integrada, um sistema de ventilação eficaz e um forro interior muito confortável. Destaca-se o spoiler traseiro projetado para oferecer excelente desempenho aerodinâmico.',
+    tamanho: 'S',
+    genero: 'Feminino',
+    cor: 'Cizento',
+    colecao: 'Anual',
+    categoria: 'capacetes',
+    marca: 'Marca Nexx',
+    utilizador: 'Ana',
   },
   {
     id: 2,
@@ -108,24 +108,30 @@ const Produtos = () => {
     <div>
       <Layout />
       <div className="container">
-        <Header 
-          handleCriarProduto={handleCriarProduto}
-          textTitle='Lista de Produtos'
-          textBtn='Criar novo Produto'
-        />
-        <TableList 
-          labels={labels} 
-          produtos={produtos} 
-          toggleVisibilityEdit={toggleVisibilityEdit}
-          toggleVisibilityDelete={toggleVisibilityDelete}
-        />
+        { !visibleDelete && !visibleEdit && (
+        <>
+            <Header 
+              handleCriarProduto={handleCriarProduto}
+              textTitle='Lista de Produtos'
+              textBtn='Criar novo Produto'
+            />
+            <TableList 
+              labels={labels} 
+              produtos={produtos} 
+              toggleVisibilityEdit={toggleVisibilityEdit}
+              toggleVisibilityDelete={toggleVisibilityDelete}
+            />
+          </>
+        )}
         {visibleEdit && <EditarProduto 
           produto={editableProduct} 
-          handleEditarProduto={handleEditarProduto}/>}
+          toggleVisibilityEdit={toggleVisibilityEdit}
+          setVisibleEdit={setVisibleEdit}/>}
         {visibleDelete && <ApagarProduto 
           produto={editableProduct}
           labels={labels}
-          handleApagarProduto={handleApagarProduto}/>}
+          handleApagarProduto={handleApagarProduto}
+          toggleVisibilityDelete={toggleVisibilityDelete}/>}
       </div>
     </div>
   );

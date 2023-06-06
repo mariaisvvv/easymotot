@@ -3,7 +3,7 @@ import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import ConfirmDelete from './ConfirmDelete';
 
-const ApagarProduto = ({ produto, labels, handleApagarProduto }) => {
+const ApagarProduto = ({ produto, labels, handleApagarProduto, toggleVisibilityDelete }) => {
     const [confirmedDelete, setConfirmedDelete] = useState(false)
     const [showModal, setShowModal] = useState(false);
 
@@ -26,7 +26,7 @@ const ApagarProduto = ({ produto, labels, handleApagarProduto }) => {
             <tbody>
             {labels.map((label, index) => (
                 <tr key={index}>
-                <td>{label}</td>
+                <td className='bold-text '>{label}</td>
                 <td>{produto[label.toLowerCase()]}</td>
                 </tr>
             ))}
@@ -34,6 +34,7 @@ const ApagarProduto = ({ produto, labels, handleApagarProduto }) => {
         </Table>
 
         <Button variant="danger" type="submit" onClick={handleDeleteSubmit}>Apagar</Button>
+        <Button variant="secondary" type="submit" onClick={toggleVisibilityDelete}>Cancelar</Button>
 
         {showModal &&<ConfirmDelete
             texto={produto.nome}

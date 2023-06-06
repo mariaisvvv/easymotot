@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import { Link } from 'react-router-dom';
 import InputProdutos from './InputProdutos';
 
-const EditarProduto = ({produto, handleEditarProduto}) => {
+const EditarProduto = ({produto, handleEditarProduto, toggleVisibilityEdit}) => {
     const [editedProduto, setEditedProduto] = useState(produto);
 
     const handleFormSubmit = (event) => {
@@ -95,6 +95,7 @@ const EditarProduto = ({produto, handleEditarProduto}) => {
                 />
 
                 <Button variant="primary" type="submit">Guardar</Button>
+                <Button variant="secondary" type="submit" onClick={toggleVisibilityEdit}>Cancelar</Button>
             </Form>
     </div>
   )

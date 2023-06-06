@@ -12,7 +12,18 @@ code {
     monospace;
 }
 
+.bold-text {
+  font-weight: bold;
+}
+
 .reference-links {
   display: flex;
   gap: 5px; /* Adjust the gap between the links */
+}
+
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px; /* Adjust the max-width as needed */
 }

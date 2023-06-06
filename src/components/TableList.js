@@ -17,9 +17,9 @@ const TableList = ({labels, produtos, toggleVisibilityEdit, toggleVisibilityDele
           <tbody>
             {produtos.map((produto) => (
               <tr key={produto.id}>
-                <td>{produto.nome}</td>
+                <td className="truncate">{produto.nome}</td>
                 <td>{produto.preco}</td>
-                <td>{produto.descricao}</td>
+                <td className="truncate">{produto.descricao}</td>
                 <td>{produto.tamanho}</td>
                 <td>{produto.genero}</td>
                 <td>{produto.cor}</td>
