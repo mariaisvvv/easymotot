@@ -3,6 +3,7 @@ import Layout from '../../components/Layout';
 import Header from '../../components/Header';
 import TableList from '../../components/TableList';
 import EditarProduto from '../../components/EditarProduto';
+import ApagarProduto from '../../components/ApagarProduto';
 
 const labels = ['Nome', 'Preço', 'Descrição', 'Tamanho', 'Género', 'Cor', 'Coleção', 'Categoria', 'Marca', 'Utilizador']
 const produtosList = [
@@ -50,6 +51,7 @@ const produtosList = [
 const Produtos = () => {
   const [produtos, setProdutos] = useState(produtosList);
   const [visibleEdit, setVisibleEdit] = useState(false);
+  const [visibleDelete, setVisibleDelete] = useState(false);
   const [editableProduct, setEditedProduto] = useState({
     id: 0,
     nome: '',
@@ -63,6 +65,11 @@ const Produtos = () => {
     marca: '',
     utilizador: '',
   });
+
+  const toggleVisibilityDelete = (product) => {
+    setEditedProduto(product);
+    setVisibleDelete(prevState => !prevState);
+  }
 
   const toggleVisibilityEdit  = (product) => {
     setEditedProduto(product);
@@ -97,14 +104,18 @@ const Produtos = () => {
         <Header 
           handleCriarProduto={handleCriarProduto}
           textTitle='Lista de Produtos'
-          textBtn='Criar novo Produto'/>
+          textBtn='Criar novo Produto'
+        />
         <TableList 
           labels={labels} 
           produtos={produtos} 
-          toggleVisibilityEdit ={toggleVisibilityEdit}/>
+          toggleVisibilityEdit={toggleVisibilityEdit}
+          toggleVisibilityDelete={toggleVisibilityDelete}
+        />
         {visibleEdit && <EditarProduto 
           produto={editableProduct} 
           handleEditarProduto={handleEditarProduto}/>}
+        {visibleDelete && <ApagarProduto />}
       </div>
     </div>
   );

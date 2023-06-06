@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table';
 
 
-const TableList = ({labels, produtos, toggleVisibilityEdit}) => {
+const TableList = ({labels, produtos, toggleVisibilityEdit, toggleVisibilityDelete}) => {
 
 
   return (
@@ -31,7 +31,7 @@ const TableList = ({labels, produtos, toggleVisibilityEdit}) => {
                 <td>
                   <div className='reference-links'>
                     <a href='#' onClick={() => toggleVisibilityEdit(produto)}> Editar </a>
-                    <a href='#' onClick={() => toggleVisibilityEdit(produto)}> Apagar </a>
+                    <a href='#' onClick={() => toggleVisibilityDelete(produto)}> Apagar </a>
                   </div>
                 </td>
               </tr>
