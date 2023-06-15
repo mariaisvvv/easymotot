@@ -12,6 +12,7 @@ export const produtosList = [
     categoria: 'capacetes',
     marca: 'Nexx',
     utilizador: 'Ana',
+    images: './1-1.jpg'
   },
   {
     id: 2,
