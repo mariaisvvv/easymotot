@@ -20,7 +20,7 @@ const Home = () => {
       <div className="home-products">
         {produtosList
           .sort((a, b) => b.quantidade - a.quantidade) 
-          .slice(0, 4) 
+          .slice(0, 5) 
           .map((produto) => (
           <Card className="home-product-card" key={produto.id}>
             <div className="image-card">

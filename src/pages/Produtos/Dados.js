@@ -1,4 +1,4 @@
-export const labels = ['Nome', 'Preco', 'Descricao', 'Tamanho', 'Genero', 'Cor', 'Colecao', 'Categoria', 'Marca', 'Utilizador']
+export const labels = ['Nome', 'Preco', 'Descricao', 'Tamanho', 'Genero', 'Quantidade','Cor', 'Colecao', 'Categoria', 'Marca', 'Utilizador']
 export const produtosList = [
   {
     id: 1,

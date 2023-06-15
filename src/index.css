@@ -12,6 +12,10 @@ code {
     monospace;
 }
 
+tr, td {
+  text-align: center;
+}
+
 .home-background {
   background-image: url("./pages/Produtos/background.jpg");
   background-size: 100% auto;
@@ -71,5 +75,12 @@ code {
   overflow: hidden;
   text-overflow: ellipsis;
   max-width: 200px;
+}
+
+.truncate-small {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
 }
 
