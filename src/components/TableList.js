@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Table from 'react-bootstrap/Table';
 
 
-const TableList = ({labels, produtos, toggleVisibilityEdit, toggleVisibilityDelete}) => {
-
+const TableList = ({labels, produtos, toggleVisibilityEdit, toggleVisibilityDelete, toggleVisibilityDetails}) => {
 
   return (
     <div>
@@ -18,9 +17,10 @@ const TableList = ({labels, produtos, toggleVisibilityEdit, toggleVisibilityDele
           <tbody>
             {produtos.map((produto) => (
               <tr key={produto.id}>
-                <td>{produto.nome}</td>
+                <td>{produto.id}</td>
+                <td className="truncate">{produto.nome}</td>
                 <td>{produto.preco}</td>
-                <td>{produto.descricao}</td>
+                <td className="truncate">{produto.descricao}</td>
                 <td>{produto.tamanho}</td>
                 <td>{produto.genero}</td>
                 <td>{produto.cor}</td>
@@ -31,6 +31,7 @@ const TableList = ({labels, produtos, toggleVisibilityEdit, toggleVisibilityDele
                 <td>
                   <div className='reference-links'>
                     <a href='#' onClick={() => toggleVisibilityEdit(produto)}> Editar </a>
+                    <a href='#' onClick={() => toggleVisibilityDetails(produto)}> Detalhes </a>
                     <a href='#' onClick={() => toggleVisibilityDelete(produto)}> Apagar </a>
                   </div>
                 </td>

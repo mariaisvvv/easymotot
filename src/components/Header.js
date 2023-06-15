@@ -1,14 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-const Header = ({textTitle, textBtn, handleCriarProduto}) => {
+const Header = ({textTitle, textBtn, toggleVisibilityCreate}) => {
   return (
     <div>
         <h1>{textTitle}</h1>
-        <Link to="/criar-produto">
-          <Button variant="primary" onClick={() => handleCriarProduto}>{textBtn}</Button>
-        </Link>
+        <Button variant="primary" onClick={toggleVisibilityCreate}>{textBtn}</Button>
     </div>
   )
 }
