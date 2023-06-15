@@ -16,14 +16,16 @@ code {
   font-weight: bold;
 }
 
+/* gap between links */
 .reference-links {
   display: flex;
-  gap: 5px; /* Adjust the gap between the links */
+  gap: 5px; 
 }
 
+/* cut text because it's too long */
 .truncate {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 150px; /* Adjust the max-width as needed */
+  max-width: 150px;
 }

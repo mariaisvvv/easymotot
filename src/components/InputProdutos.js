@@ -5,7 +5,7 @@ const InputProdutos = ({label, placeholder, name, value, onChange}) => {
   return (
  
     <Form.Group>
-        <Form.Label>{label}</Form.Label>
+        <Form.Label className='bold-text'>{label}</Form.Label>
         <Form.Control placeholder={placeholder}
             name={name}
             value={value}

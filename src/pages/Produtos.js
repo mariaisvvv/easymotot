@@ -5,53 +5,13 @@ import TableList from '../components/TableList';
 import EditarProduto from '../components/EditarProduto';
 import ApagarProduto from '../components/ApagarProduto';
 import DetalhesProduto from '../components/DetalhesProduto';
-
-const labels = ['Nome', 'Preco', 'Descricao', 'Tamanho', 'Genero', 'Cor', 'Colecao', 'Categoria', 'Marca', 'Utilizador']
-const produtosList = [
-  {
-    id: 1,
-    nome: 'CAPACETE NEXX SX100R ABISAL BLACK RED MATT',
-    preco: '186,30 €',
-    descricao: 'Capacete Nexx SX.100R Abisal Preto / Vermelho Mate. Capacete integral em material termoplástico muito leve. Destaca-se por oferecer um design aerodinâmico, moderno e esportivo ideal para o uso diário. Tem uma pala de sol integrada, um sistema de ventilação eficaz e um forro interior muito confortável. Destaca-se o spoiler traseiro projetado para oferecer excelente desempenho aerodinâmico.',
-    tamanho: 'S',
-    genero: 'Feminino',
-    cor: 'Cizento',
-    colecao: 'Anual',
-    categoria: 'capacetes',
-    marca: 'Nexx',
-    utilizador: 'Ana',
-  },
-  {
-    id: 2,
-    nome: 'Produto 2',
-    preco: '19,99 €',
-    descricao: 'Descrição 2',
-    tamanho: 'L',
-    genero: 'Feminino',
-    cor: 'Azul',
-    colecao: 'Coleção 2',
-    categoria: 'Category 2',
-    marca: 'Marca 2',
-    utilizador: 'Utilizador 2',
-  },
-  {
-    id: 3,
-    nome: 'Produto 3',
-    preco: '14,99 €',
-    descricao: 'Descrição 3',
-    tamanho: 'M',
-    genero: 'Masculino',
-    cor: 'Verde',
-    colecao: 'Coleção 3',
-    categoria: 'Category 3',
-    marca: 'Marca 3',
-    utilizador: 'Utilizador 3',
-  },
-]
+import CriarProduto from '../components/CriarProduto';
+import {labels, produtosList} from '../pages/Produtos/Dados';
 
 const Produtos = () => {
   const [produtos, setProdutos] = useState(produtosList);
   const [visibleEdit, setVisibleEdit] = useState(false);
+  const [visibleCreate, setVisibleCreate] = useState(false);
   const [visibleDelete, setVisibleDelete] = useState(false);
   const [visibleDetails, setVisibleDetails] = useState(false);
   const [editableProduct, setEditedProduto] = useState({
@@ -78,17 +38,23 @@ const Produtos = () => {
     setVisibleEdit(prevState => !prevState);
   }
 
+  const toggleVisibilityCreate  = () => {
+    setVisibleCreate(prevState => !prevState);
+  }
+
   const toggleVisibilityDetails  = (product) => {
     setEditedProduto(product);
     setVisibleDetails(prevState => !prevState);
   }
 
   const handleCriarProduto = (produto) => {
+    console.log(produtos.length);
     const novoProduto = {
       id: produtos.length + 1,
       ...produto,
     };
     setProdutos([...produtos, novoProduto]);
+    setVisibleCreate(prevState => !prevState);
   };
 
   const handleEditarProduto = (editedProduct) => {
@@ -115,10 +81,10 @@ const Produtos = () => {
     <div>
       <Layout />
       <div className="container">
-        { !visibleDelete && !visibleEdit && (
+        { !visibleDelete && !visibleEdit && !visibleDetails && !visibleCreate &&(
         <>
             <Header 
-              handleCriarProduto={handleCriarProduto}
+              toggleVisibilityCreate={toggleVisibilityCreate}
               textTitle='Lista de Produtos'
               textBtn='Criar novo Produto'
             />
@@ -144,6 +110,10 @@ const Produtos = () => {
           produto={editableProduct}
           labels={labels}
           toggleVisibilityDetails={toggleVisibilityDetails}/>}
+        {visibleCreate && <CriarProduto 
+          labels={labels}
+          handleCriarProduto={handleCriarProduto}
+          toggleVisibilityCreate={toggleVisibilityCreate}/>}
       </div>
     </div>
   );
