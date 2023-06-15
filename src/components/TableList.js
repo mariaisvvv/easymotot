@@ -17,12 +17,12 @@ const TableList = ({labels, produtos, toggleVisibilityEdit, toggleVisibilityDele
           <tbody>
             {produtos.map((produto) => (
               <tr key={produto.id}>
-                <td>{produto.id}</td>
-                <td className="truncate">{produto.nome}</td>
+                <td className="truncate-small">{produto.nome}</td>
                 <td>{produto.preco}</td>
-                <td className="truncate">{produto.descricao}</td>
+                <td className="truncate-small">{produto.descricao}</td>
                 <td>{produto.tamanho}</td>
                 <td>{produto.genero}</td>
+                <td>{produto.quantidade}</td>
                 <td>{produto.cor}</td>
                 <td>{produto.colecao}</td>
                 <td>{produto.categoria}</td>
