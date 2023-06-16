@@ -1,14 +1,9 @@
 import Layout from "../components/Layout"
 import { produtosList } from "./Produtos/Dados"
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
+import Produtocard from "../components/Produtocard"
 
 const Home = () => {
   console.log(produtosList[0]);
-
-  const orderShowed = () => {
-
-  }
 
   return (
     <>
@@ -19,21 +14,8 @@ const Home = () => {
       </div>
       <div className="home-products">
         {produtosList
-          .sort((a, b) => b.quantidade - a.quantidade) 
-          .slice(0, 5) 
-          .map((produto) => (
-          <Card className="home-product-card" key={produto.id}>
-            <div className="image-card">
-              <Card.Img variant="top" src={produto.images}/>
-            </div>
-            <Card.Body>
-              <Card.Title>{produto.preco}</Card.Title>
-              <Card.Text className="truncate">
-                {produto.nome}
-              </Card.Text>
-              <Button variant="primary">Ver Detalhes</Button>
-            </Card.Body>
-          </Card>
+          .sort((a, b) => b.quantidade - a.quantidade).slice(0,4).map((produto) => (
+          <Produtocard  key={produto.id} produto={produto}/>
         ))}
       </div>
     </>
