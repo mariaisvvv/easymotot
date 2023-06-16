@@ -4,9 +4,9 @@ import Container from 'react-bootstrap/Container';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 import Layout from '../components/Layout'
-import { produtosList, icons } from './Produtos/Dados'
+import { produtosList, icons, labels } from './Produtos/Dados'
 import Produtocard from '../components/Produtocard';
-
+import FiltrosProduto from '../components/FiltrosProduto';
 
 const Produtos2 = () => {
   const [atualCategory, setActualCategory] = useState('top')
@@ -17,6 +17,12 @@ const Produtos2 = () => {
     const filtered = produtosList.filter((produto) => produto.categoria === atualCategory);
     setFilteredProdutos(filtered)
   }, [atualCategory]);
+
+  const convertToUpper = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1)
+
+  };
+  
 
   const showCategory = (categoryId) => {
     switch(categoryId){
@@ -47,6 +53,9 @@ const Produtos2 = () => {
               ))}
             </Row>
           </Container>
+          <div>
+            <FiltrosProduto categoria={convertToUpper(atualCategory)} labels={labels}/>
+          </div>
           <div className="home-products">
             {filteredProdutos.map((produto) => (<Produtocard key={produto.id} produto={produto}/>))}
           </div>
