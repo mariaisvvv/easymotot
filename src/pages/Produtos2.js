@@ -11,17 +11,45 @@ import FiltrosProduto from '../components/FiltrosProduto';
 const Produtos2 = () => {
   const [atualCategory, setActualCategory] = useState('top')
   const [filteredProdutos, setFilteredProdutos] = useState([])
+  const marcas = produtosList.map((produto) => produto.marca)
+  const colecoes = produtosList.map((produto) => produto.colecao)
+  const cores = produtosList.map((produto) => produto.cor)
+  const generos = produtosList.map((produto) => produto.genero)
+  const tamanhos = produtosList.map((produto) => produto.tamanho)
 
   useEffect(() => {
     setFilteredProdutos([])
-    const filtered = produtosList.filter((produto) => produto.categoria === atualCategory);
+    const filtered = produtosList.filter((produto) => produto.categoria === atualCategory)
     setFilteredProdutos(filtered)
-  }, [atualCategory]);
+  }, [atualCategory])
 
   const convertToUpper = (str) => {
     return str.charAt(0).toUpperCase() + str.slice(1)
 
-  };
+  }
+
+  const handleFiltros = (marcasF, colecoesF, coresF, generosF, tamanhosF, categoriaF) => {
+    let filteredProdutos = produtosList.filter((produto) => produto.categoria === categoriaF.toLowerCase())
+
+    //atenção aqui que ele cria um objecto e não um array, então o marcasF.lenght não funciona
+    if(Object.keys(marcasF).length > 0) {
+      filteredProdutos = filteredProdutos.filter((produto) => marcasF.includes(produto.marca))
+    } 
+    if(Object.keys(colecoesF).length > 0) {
+      filteredProdutos = filteredProdutos.filter((produto) => colecoesF.includes(produto.colecao))
+    } 
+    if(Object.keys(coresF).length > 0) {
+      filteredProdutos = filteredProdutos.filter((produto) => coresF.includes(produto.cor))
+    } 
+    if(Object.keys(generosF).length > 0) {
+      filteredProdutos = filteredProdutos.filter((produto) => generosF.includes(produto.genero))
+    } 
+    if(Object.keys(tamanhosF).length > 0) {
+      filteredProdutos = filteredProdutos.filter((produto) => tamanhosF.includes(produto.tamanho))
+    } 
+
+    setFilteredProdutos(filteredProdutos)
+  }
   
 
   const showCategory = (categoryId) => {
@@ -54,7 +82,14 @@ const Produtos2 = () => {
             </Row>
           </Container>
           <div>
-            <FiltrosProduto categoria={convertToUpper(atualCategory)} labels={labels}/>
+            <FiltrosProduto categoria={convertToUpper(atualCategory)}
+            labels={labels} 
+            marcas={marcas} 
+            colecoes={colecoes} 
+            cores={cores}
+            generos={generos}
+            tamanhos={tamanhos}
+            handleFiltros={handleFiltros}/>
           </div>
           <div className="home-products">
             {filteredProdutos.map((produto) => (<Produtocard key={produto.id} produto={produto}/>))}

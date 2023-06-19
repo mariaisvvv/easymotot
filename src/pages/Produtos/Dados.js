@@ -1,5 +1,3 @@
-export const labels = ['Nome', 'Preco', 'Descricao', 'Tamanho', 'Genero', 'Quantidade','Cor', 'Colecao', 'Categoria', 'Marca', 'Utilizador']
-
 export const icons = [
   {
   id: 1,
@@ -89,14 +87,16 @@ export const produtosList = [
     nome: 'Luvas 2',
     preco: '29,99 €',
     descricao: 'Descrição 2',
-    tamanho: 'L',
+    tamanho: 'S',
     genero: 'Masculino',
     quantidade: 3,
     cor: 'Azul',
     colecao: 'Inverno',
     categoria: 'luvas',
-    marca: 'Alpine Stars',
+    marca: 'Dainese',
     utilizador: 'EasyMoto',
     images: require('./2-1.jpg')
   },
 ]
+
+export const labels = Object.keys(produtosList[0]).slice(1)
