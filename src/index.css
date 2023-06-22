@@ -59,6 +59,26 @@ tr, td {
   object-fit: cover;
 }
 
+.icon-container {
+  max-width: 100%;
+}
+
+.icons{
+  width: 100px;
+  height: 100px;
+  background-color: rgba(37, 37, 37, 0.3) !important;
+  border: none !important;
+  padding: 10px;
+  margin: 10px 10px 50px 10px;
+}
+
+.off-canvas{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 0;
+}
+
 .bold-text {
   font-weight: bold;
 }
